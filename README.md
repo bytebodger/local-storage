@@ -7,6 +7,7 @@ This is a small utility class for storing and retrieving complex values from Loc
 
 This example is shown in React - but the same could be done in "regular" JavaScript:
 
+```javascript
     import local from './local';
     import React from 'react';
     
@@ -30,3 +31,4 @@ This example is shown in React - but the same could be done in "regular" JavaScr
           );
        }
     }
+```
