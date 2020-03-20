@@ -1,6 +1,6 @@
 import is from './is';
 
-class local {
+class localWrapper {
    /*
       a wrapper for localStorage() that will store every key value in a serialized JSON string
       this allows localStorage to hold string, booleans, numbers, nulls, objects, and arrays
@@ -48,5 +48,5 @@ class local {
    };
 }
 
-const db = new local();
-export default db;
+const local = new localWrapper();
+export default local;
