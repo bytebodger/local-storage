@@ -5,6 +5,10 @@ class local {
       a wrapper for localStorage() that will store every key value in a serialized JSON string
       this allows localStorage to hold string, booleans, numbers, nulls, objects, and arrays
     */
+   clear = () => {
+      localStorage.clear();
+   };   
+   
    getItem = (itemName = '') => {
       if (!is.aPopulatedString(itemName))
          return null;
