@@ -1,5 +1,5 @@
 import is from './is';
-import {temp} from './temp';
+import temp from './temp';
 
 class localStorageWrapper {
    /*
