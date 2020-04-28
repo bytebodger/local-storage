@@ -1,37 +1,47 @@
-import is from './is';
-import temp from './temp';
+import is from 'classes/is';
+import temp from 'objects/temp';
 
-class localStorageWrapper {
+export default class local {
    /*
       a wrapper for localStorage() that will store every key value in a serialized JSON string
       this allows localStorage to hold string, booleans, numbers, nulls, objects, and arrays
       if localStorage() is not available, it will use a standard object for storage
     */
-   clear = () => {
+   static clear = () => {
       if (this.localStorageIsSupported())
          localStorage.clear();
+      // noinspection JSUndeclaredVariable
       temp = {};
    };
    
-   getItem = (itemName = '') => {
+   static getItem = (itemName = '', defaultValue = '__noDefaultValueSupplied__') => {
       if (!is.aPopulatedString(itemName))
          return null;
       if (this.localStorageIsSupported()) {
-         const valueToBeDeserialized = localStorage.getItem(itemName);
-         if (!valueToBeDeserialized)
-            return null;
-         const deserializedValue = JSON.parse(valueToBeDeserialized);
-         if (deserializedValue.hasOwnProperty('value'))
-            return deserializedValue.value;
-         return null;
+         const valueObject = JSON.parse(localStorage.getItem(itemName));
+         if (valueObject === null && defaultValue !== '__noDefaultValueSupplied__') {
+            this.setItem(itemName, defaultValue);
+            return defaultValue;
+         }
+         if (valueObject.hasOwnProperty('value')) {
+            if (valueObject.value === null && defaultValue !== '__noDefaultValueSupplied__') {
+               this.setItem(itemName, defaultValue);
+               return defaultValue;
+            }
+         }
+         return valueObject.value;
       } else {
          if (temp.hasOwnProperty(itemName))
             return temp[itemName];
+         else if (defaultValue !== '__noDefaultValueSupplied__') {
+            temp[itemName] = defaultValue;
+            return defaultValue;
+         }
          return null;
       }
    };
    
-   localStorageIsSupported = () => {
+   static localStorageIsSupported = () => {
       try {
          const testKey = '__some_random_key_you_are_not_going_to_use__';
          localStorage.setItem(testKey, testKey);
@@ -42,7 +52,7 @@ class localStorageWrapper {
       }
    };
    
-   removeItem = (itemName = '') => {
+   static removeItem = (itemName = '') => {
       if (!is.aPopulatedString(itemName))
          return false;
       if (this.localStorageIsSupported())
@@ -52,24 +62,7 @@ class localStorageWrapper {
       return true;
    };
    
-   setDefault = (itemName = '', defaultValue = '') => {
-      if (!is.aPopulatedString(itemName) || is.undefined(defaultValue))
-         return null;
-      let currentValue;
-      if (this.localStorageIsSupported()) {
-         currentValue = this.getItem(itemName);
-         if (!is.nullOrUndefined(currentValue) && (currentValue !== '' || currentValue === defaultValue))
-            return this.getItem(itemName);
-      } else {
-         currentValue = temp[itemName];
-         if (!is.nullOrUndefined(currentValue) && (currentValue !== '' || currentValue === defaultValue))
-            return temp[itemName];
-      }
-      this.setItem(itemName, defaultValue);
-      return defaultValue;
-   };
-   
-   setItem = (itemName, itemValue) => {
+   static setItem = (itemName, itemValue) => {
       if (is.undefined(itemValue) || !is.aPopulatedString(itemName))
          return false;
       if (this.localStorageIsSupported()) {
@@ -82,6 +75,3 @@ class localStorageWrapper {
       return true;
    };
 }
-
-const local = new localStorageWrapper();
-export default local;
