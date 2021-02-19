@@ -1,7 +1,7 @@
-import is from 'classes/is';
-import temp from 'objects/temp';
+import { is } from 'is';
+import { temp } from 'temp';
 
-export default class local {
+export class local {
    /*
       a wrapper for localStorage() that will store every key value in a serialized JSON string
       this allows localStorage to hold string, booleans, numbers, nulls, objects, and arrays

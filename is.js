@@ -64,5 +64,4 @@ class booleanValidation {
    }
 }
 
-const is = new booleanValidation();
-export default is;
+export const is = new booleanValidation();

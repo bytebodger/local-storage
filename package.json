@@ -1,0 +1,29 @@
+{
+  "name": "@toolz/local-storage",
+  "version": "0.0.1",
+  "description": "A wrapper for local storage that maintains integrity of data types and fails gracefully if local storage is not available",
+  "keywords": [
+    "local storage",
+    "localStorage",
+    "javascript"
+  ],
+  "homepage": "https://github.com/bytebodger/local-storage",
+  "bugs": {
+    "email": "adam.davis@hashverify.com",
+    "url": "https://github.com/bytebodger/local-storage/issues"
+  },
+  "main": "local.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bytebodger/local-storage.git"
+  },
+  "author": "Adam Nathaniel Davis <adam.davis@hashverify.com> (https://writing.voyage)",
+  "license": "MIT",
+  "private": false,
+  "publishConfig": {
+    "access": "public"
+  }
+}

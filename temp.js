@@ -1,2 +1,1 @@
-let temp = {};
-export default temp;
+export let temp = {};
