@@ -1,7 +1,10 @@
 import { allow } from '@toolz/allow';
-import { temp } from './temp';
+
+let temp = {};
 
 const Local = () => {
+   allow.setFailureBehavior('warn');
+   
    const clear = () => {
       if (localStorageIsSupported())
          localStorage.clear();
@@ -80,4 +83,4 @@ const Local = () => {
    };
 };
 
-export const local = Local;
+export const local = Local();
