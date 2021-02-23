@@ -32,7 +32,9 @@ const arguments = {
 ```javascript
 local.setItem('one', 1);
 local.setItem('two', 2);
+
 local.clear();
+
 local.getItem('one'); // returns NULL
 local.getItem('two', 22); // return 22
 ```
