@@ -22,8 +22,9 @@ local.getItem('theAnswer'); // returns the number 42
 `.clear()` empties all values from localStorage.
 
 ```javascript
-const arguments = {
-   // NONE
+const API = {
+   arguments: {},
+   returns: void,
 }
 ```
 
@@ -44,15 +45,18 @@ local.getItem('two', 22); // return 22
 `.getItem()` retrieves an item from localStorage in its native data type. If it doesn't exist and no default value is provided, it returns `NULL`. If a default value is provided and the item doesn't exist, it sets the default value as the item and returns that value.
 
 ```javascript
-const arguments = {
-   itemName: {
-      required,
-      format: 'populated string',
+const API = {
+   arguments: {
+      itemName: {
+         required,
+         format: 'populated string',
+      },
+      defaultValue: {
+         optional,
+         format: any,
+      },
    },
-   defaultValue: {
-      optional,
-      format: any,
-   },
+   returns: any,
 }
 ```
 
@@ -75,11 +79,14 @@ local.getItem('anotherNotSet', 3.14); // returns 3.14
 `.removeItem()` unsets an item from localStorage. If the item didn't previously exist, the method throws no error.
 
 ```javascript
-const arguments = {
-   itemName: {
-      required,
-      format: 'populated string',
+const API = {
+   arguments: {
+      itemName: {
+         required,
+         format: 'populated string',
+      },
    },
+   returns: true,
 }
 ```
 
@@ -101,15 +108,18 @@ local.getItem('firstName', 'Mary'); // return 'Mary'
 `.setItem()` sets an item into localStorage. If the item already existed, it will overwrite the previous one. If the item did not exist, it will create a new item.
 
 ```javascript
-const arguments = {
-   itemName: {
-      required,
-      format: 'populated string',
+const API = {
+   arguments: {
+      itemName: {
+         required,
+         format: 'populated string',
+      },
+      itemValue: {
+         optional,
+         format: any,
+      },
    },
-   itemValue: {
-      optional,
-      format: any,
-   },
+   returns: any,
 }
 ```
 

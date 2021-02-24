@@ -1,6 +1,6 @@
 {
   "name": "@toolz/local-storage",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "A wrapper for local storage that maintains integrity of data types and fails gracefully if local storage is not available",
   "keywords": [
     "local storage",
