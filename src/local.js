@@ -41,7 +41,7 @@ const Local = () => {
       }
    };
    
-   const is = {not: {negative: 0}};
+   const is = {not: {empty: 1}};
    
    const localStorageIsSupported = () => {
       try {
