@@ -3,7 +3,7 @@ import { allow } from '@toolz/allow';
 let temp = {};
 
 const Local = () => {
-   allow.setFailureBehavior('warn');
+   allow.setFailureBehavior(allow.failureBehavior.WARN);
    
    const clear = () => {
       if (localStorageIsSupported())

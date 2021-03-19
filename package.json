@@ -1,6 +1,6 @@
 {
   "name": "@toolz/local-storage",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "A wrapper for local storage that maintains integrity of data types and fails gracefully if local storage is not available",
   "keywords": [
     "local storage",
@@ -27,7 +27,7 @@
     "access": "public"
   },
   "dependencies": {
-    "@toolz/allow": "^1.0.4"
+    "@toolz/allow": "^1.1.2"
   },
   "devDependencies": {
     "@babel/cli": "^7.13.0",
