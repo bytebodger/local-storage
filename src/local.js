@@ -1,4 +1,5 @@
 import { allow } from '@toolz/allow';
+import { localStorageIsAvailable } from '@toolz/local-storage-is-available';
 
 let temp = {};
 
@@ -6,14 +7,14 @@ const Local = () => {
    allow.setFailureBehavior(allow.failureBehavior.WARN);
    
    const clear = () => {
-      if (localStorageIsSupported())
+      if (localStorageIsAvailable())
          localStorage.clear();
       temp = {};
    };
    
    const getItem = (itemName = '', defaultValue = '__noDefaultValueSupplied__') => {
       allow.aString(itemName, is.not.empty);
-      if (localStorageIsSupported()) {
+      if (localStorageIsAvailable()) {
          const valueObject = JSON.parse(localStorage.getItem(itemName));
          if (valueObject === null) {
             if (defaultValue !== '__noDefaultValueSupplied__') {
@@ -42,21 +43,10 @@ const Local = () => {
    };
    
    const is = {not: {empty: 1}};
-   
-   const localStorageIsSupported = () => {
-      try {
-         const testKey = '__some_random_key_you_are_not_going_to_use__';
-         localStorage.setItem(testKey, testKey);
-         localStorage.removeItem(testKey);
-         return true;
-      } catch (e) {
-         return false;
-      }
-   };
-   
+
    const removeItem = (itemName = '') => {
       allow.aString(itemName, is.not.empty);
-      if (localStorageIsSupported())
+      if (localStorageIsAvailable())
          localStorage.removeItem(itemName);
       else if (temp.hasOwnProperty(itemName))
          delete temp[itemName];
@@ -65,7 +55,7 @@ const Local = () => {
    
    const setItem = (itemName = '', itemValue) => {
       allow.aString(itemName, is.not.empty);
-      if (localStorageIsSupported()) {
+      if (localStorageIsAvailable()) {
          const valueToBeSerialized = {value: itemValue};
          const serializedValue = JSON.stringify(valueToBeSerialized);
          localStorage.setItem(itemName, serializedValue);
